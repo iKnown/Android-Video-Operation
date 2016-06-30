@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VideoOperation</string>
+    <string name="max_time">Max Time in seconds</string>
+    <string name="max_size">Max Size in MB</string>
+</resources>
