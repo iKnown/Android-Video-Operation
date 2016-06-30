@@ -19,7 +19,7 @@
             android:background="@drawable/bg" />
     </LinearLayout>
 
-    <com.android.videoappend.widget.VideoRecorderView
+    <com.iknow.android.videooperation.widget.VideoRecorderView
         android:id="@+id/movieRecorderView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

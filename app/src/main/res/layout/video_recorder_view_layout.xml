@@ -11,7 +11,7 @@
         android:layout_weight="1"
         />
 
-    <com.android.videoappend.widget.ProgressView
+    <com.iknow.android.videooperation.widget.ProgressView
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
