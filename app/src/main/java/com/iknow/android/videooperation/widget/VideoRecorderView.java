@@ -21,8 +21,8 @@ import android.view.SurfaceView;
 import android.widget.LinearLayout;
 
 import com.iknow.android.videooperation.R;
-import com.iknow.android.videooperation.utils.IRecordListener;
-import com.iknow.android.videooperation.utils.IVideo;
+import com.iknow.android.videooperation.interfaces.IRecordListener;
+import com.iknow.android.videooperation.interfaces.IVideo;
 
 import java.io.File;
 import java.io.IOException;

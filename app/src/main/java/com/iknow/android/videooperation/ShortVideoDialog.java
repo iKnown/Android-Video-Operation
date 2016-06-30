@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.iknow.android.videooperation.utils.DeviceHelper;
-import com.iknow.android.videooperation.utils.IRecordListener;
-import com.iknow.android.videooperation.utils.IShortVideo;
+import com.iknow.android.videooperation.interfaces.IRecordListener;
+import com.iknow.android.videooperation.interfaces.IShortVideo;
 import com.iknow.android.videooperation.widget.VideoRecorderView;
 
 /**

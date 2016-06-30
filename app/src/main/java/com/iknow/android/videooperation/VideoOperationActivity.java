@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.iknow.android.videooperation.databinding.RecorderLayoutBinding;
 import com.iknow.android.videooperation.utils.DeviceHelper;
-import com.iknow.android.videooperation.utils.IShortVideo;
+import com.iknow.android.videooperation.interfaces.IShortVideo;
 
 import java.io.File;
 
