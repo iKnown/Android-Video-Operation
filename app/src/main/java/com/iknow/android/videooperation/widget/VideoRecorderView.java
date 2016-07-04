@@ -21,8 +21,8 @@ import android.view.SurfaceView;
 import android.widget.LinearLayout;
 
 import com.iknow.android.videooperation.R;
-import com.iknow.android.videooperation.interfaces.IRecordListener;
-import com.iknow.android.videooperation.interfaces.IVideo;
+import com.iknow.android.videooperation.interfaces.onRecordFinishListener;
+import com.iknow.android.videooperation.interfaces.OnRecordListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ import java.util.TimerTask;
  * Email： who_know_me@163.com
  * Describe:
  */
-public class VideoRecorderView extends LinearLayout implements IVideo, OnErrorListener{
+public class VideoRecorderView extends LinearLayout implements OnRecordListener, OnErrorListener{
 
     private static final int SHOOT_TIME = 10;
 
@@ -155,7 +155,7 @@ public class VideoRecorderView extends LinearLayout implements IVideo, OnErrorLi
     }
 
     @Override
-    public void startRecord(final IRecordListener onRecordFinishListener) {
+    public void startRecord(final onRecordFinishListener onRecordFinishListener) {
         createRecordDir();
         try {
             if (!isOpenCamera)
@@ -172,7 +172,7 @@ public class VideoRecorderView extends LinearLayout implements IVideo, OnErrorLi
                     if (mTimeCount == mRecordMaxTime) {
                         stopRecord();
                         if (onRecordFinishListener != null)
-                            onRecordFinishListener.onRecordFinish();
+                            onRecordFinishListener.recordFinish();
                     }
                 }
             }, 0, 1000);
@@ -182,10 +182,11 @@ public class VideoRecorderView extends LinearLayout implements IVideo, OnErrorLi
     }
 
     @Override
-    public void stopRecord() {
+    public File stopRecord() {
         _stopRecord();
         _releaseRecord();
         _freeCameraResource();
+        return mVecordFile;
     }
 
     public void _stopRecord() {
@@ -273,10 +274,7 @@ public class VideoRecorderView extends LinearLayout implements IVideo, OnErrorLi
         return mTimeCount;
     }
 
-    /**
-     * @return the mVecordFile
-     */
-    public File getmVecordFile() {
+    public File getRecordFile() {
         return mVecordFile;
     }
 

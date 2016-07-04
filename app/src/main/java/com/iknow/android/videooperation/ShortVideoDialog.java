@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.iknow.android.videooperation.utils.DeviceHelper;
-import com.iknow.android.videooperation.interfaces.IRecordListener;
+import com.iknow.android.videooperation.interfaces.onRecordFinishListener;
 import com.iknow.android.videooperation.interfaces.IShortVideo;
 import com.iknow.android.videooperation.widget.VideoRecorderView;
 
@@ -69,19 +69,23 @@ public class ShortVideoDialog{
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    mRecorderView.startRecord(new IRecordListener() {
+                    mRecorderView.startRecord(new onRecordFinishListener() {
 
                         @Override
-                        public void onRecordFinish () {
+                        public void recordFinish() {
                             Looper.prepare();
                             Toast.makeText(mContext, "松开手再拍一个", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void recordError() {
+
                         }
                     });
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (mRecorderView.getTimeCount() > MIN_HOLD_TIME) {
                         mDialog.dismiss();
-                        mRecorderView.stopRecord();
-                        mCallBack.getVideoFile(mRecorderView.getmVecordFile());
+                        mCallBack.getVideoFile(mRecorderView.stopRecord());
                     }
                     else {
                         Toast.makeText(mContext, "手指不要放开", Toast.LENGTH_SHORT).show();

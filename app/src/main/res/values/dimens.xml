@@ -4,4 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- VIDEO TRIMMER-->
+    <dimen name="progress_video_line_height">60dp</dimen>
+    <dimen name="frames_video_height">60dip</dimen>
 </resources>

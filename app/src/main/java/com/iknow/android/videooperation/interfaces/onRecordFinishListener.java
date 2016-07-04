@@ -6,6 +6,7 @@ package com.iknow.android.videooperation.interfaces;
  * Email： who_know_me@163.com
  * Describe:
  */
-public interface IRecordListener {
-    void onRecordFinish();
+public interface onRecordFinishListener {
+    void recordFinish();
+    void recordError();
 }

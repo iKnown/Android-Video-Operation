@@ -16,9 +16,10 @@ import android.widget.CompoundButton;
 import android.widget.MediaController;
 import android.widget.Toast;
 
-import com.iknow.android.videooperation.databinding.RecorderLayoutBinding;
+import com.iknow.android.videooperation.databinding.OperationLayoutBinding;
 import com.iknow.android.videooperation.utils.DeviceHelper;
 import com.iknow.android.videooperation.interfaces.IShortVideo;
+import com.iknow.android.videooperation.utils.FileUtils;
 
 import java.io.File;
 
@@ -32,7 +33,7 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
   private static final int REQUEST_STORAGE_PERMISSION = 123;
   private static final int ACTION_RECORD_VIDEO = 3;
   private static final int ACTION_CHOOSER_VIDEO = 4;
-
+  private static final int ACTION_TRIM_VIDEO = 5;
 
   private MediaController mediaController;
   private String videoFile;
@@ -41,19 +42,20 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
   private long mMaxSize = 30; //In Mb
   private static final long K = 1024;
   private boolean mCompress = false;
-  private RecorderLayoutBinding binding;
+  private OperationLayoutBinding binding;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    binding =  DataBindingUtil.setContentView(this,R.layout.recorder_layout);
+    binding =  DataBindingUtil.setContentView(this,R.layout.operation_layout);
 
     DeviceHelper.init(this);
 
     binding.fab.setOnClickListener(this);
     binding.appendVideo.setOnClickListener(this);
     binding.shortVideo.setOnClickListener(this);
+    binding.videoEdit.setOnClickListener(this);
     initVideoView();
   }
 
@@ -67,6 +69,8 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
   public void onClick(View view) {
     if(view.getId() == binding.fab.getId())
       record();
+    else if(view.getId() == binding.videoEdit.getId())
+      trimVideo();
     else if(view.getId() == binding.appendVideo.getId()){
       chooseVideo();
     }else if(view.getId() == binding.shortVideo.getId())
@@ -94,6 +98,13 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
     }else{
 
     }
+  }
+
+  private void trimVideo(){
+    Intent intent = new Intent();
+    intent.setTypeAndNormalize("video/*");
+    intent.setAction(Intent.ACTION_GET_CONTENT);
+    startActivityForResult(intent, ACTION_TRIM_VIDEO);
   }
 
   private void chooseVideo() {
@@ -143,6 +154,15 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
 
       }else if(requestCode == ACTION_CHOOSER_VIDEO){
         Uri uri = data.getData();
+      }else if(requestCode == ACTION_TRIM_VIDEO){
+        final Uri selectedUri = data.getData();
+        if (selectedUri != null) {
+          Intent intent = new Intent(this, VideoTrimmerActivity.class);
+          intent.putExtra("EXTRA_VIDEO_PATH", FileUtils.getPath(this, selectedUri));
+          startActivity(intent);
+        } else {
+          Toast.makeText(VideoOperationActivity.this, "Cannot retrieve selected video", Toast.LENGTH_SHORT).show();
+        }
       }
     }
   }
