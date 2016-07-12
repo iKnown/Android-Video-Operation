@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.googlecode.mp4parser:isoparser:1.1.20'
+    compile 'org.aspectj:aspectjrt:1.8.9'
 }
