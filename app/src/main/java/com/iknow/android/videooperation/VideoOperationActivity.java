@@ -32,7 +32,7 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
   private static final String PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
   private static final int REQUEST_STORAGE_PERMISSION = 123;
   private static final int ACTION_RECORD_VIDEO = 3;
-  private static final int ACTION_CHOOSER_VIDEO = 4;
+  private static final int ACTION_COMPRESS_VIDEO = 4;
   private static final int ACTION_TRIM_VIDEO = 5;
 
   private MediaController mediaController;
@@ -53,7 +53,7 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
     DeviceHelper.init(this);
 
     binding.fab.setOnClickListener(this);
-    binding.appendVideo.setOnClickListener(this);
+    binding.compressVideo.setOnClickListener(this);
     binding.shortVideo.setOnClickListener(this);
     binding.videoEdit.setOnClickListener(this);
     initVideoView();
@@ -71,8 +71,9 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
       record();
     else if(view.getId() == binding.videoEdit.getId())
       trimVideo();
-    else if(view.getId() == binding.appendVideo.getId()){
+    else if(view.getId() == binding.compressVideo.getId()){
       chooseVideo();
+
     }else if(view.getId() == binding.shortVideo.getId())
       new ShortVideoDialog(VideoOperationActivity.this).build(new IShortVideo() {
         @Override
@@ -113,7 +114,7 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 
     try {
-      startActivityForResult(intent, ACTION_CHOOSER_VIDEO);
+      startActivityForResult(intent, ACTION_COMPRESS_VIDEO);
     } catch (android.content.ActivityNotFoundException ex) {
       Toast.makeText(this, "Please install a File Manager.",  Toast.LENGTH_SHORT).show();
     }
@@ -152,8 +153,10 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
         binding.videoView.requestFocus();
         binding.videoView.start();
 
-      }else if(requestCode == ACTION_CHOOSER_VIDEO){
+      }else if(requestCode == ACTION_COMPRESS_VIDEO){
         Uri uri = data.getData();
+
+
       }else if(requestCode == ACTION_TRIM_VIDEO){
         final Uri selectedUri = data.getData();
         if (selectedUri != null) {

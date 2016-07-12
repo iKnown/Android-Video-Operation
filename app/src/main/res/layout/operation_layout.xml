@@ -122,14 +122,14 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/append_video"
+                        android:id="@+id/compress_video"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/bg"
                         android:gravity="center"
-                        android:text="Clip"
+                        android:text="Compress"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
