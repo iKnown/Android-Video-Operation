@@ -5,8 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.iknow.android.videooperation.interfaces.OnTrimVideoListener;
-import com.iknow.android.videooperation.trimmer.VideoTrimmer;
+import iknow.android.video.view.VideoTrimmerView;
+
+import iknow.android.video.interfaces.OnTrimVideoListener;
 
 /**
  * Author：J.Chou
@@ -16,7 +17,7 @@ import com.iknow.android.videooperation.trimmer.VideoTrimmer;
  */
 public class VideoTrimmerActivity extends AppCompatActivity implements OnTrimVideoListener {
 
-    private VideoTrimmer mVideoTrimmer;
+    private VideoTrimmerView mVideoTrimmer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class VideoTrimmerActivity extends AppCompatActivity implements OnTrimVid
         }
 
 
-        mVideoTrimmer = ((VideoTrimmer) findViewById(R.id.timeLine));
+        mVideoTrimmer = ((VideoTrimmerView) findViewById(R.id.timeLine));
         if (mVideoTrimmer != null) {
             mVideoTrimmer.setMaxDuration(10);
             mVideoTrimmer.setOnTrimVideoListener(this);

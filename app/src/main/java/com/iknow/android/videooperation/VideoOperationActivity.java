@@ -18,10 +18,12 @@ import android.widget.Toast;
 
 import com.iknow.android.videooperation.databinding.OperationLayoutBinding;
 import com.iknow.android.videooperation.utils.DeviceHelper;
-import com.iknow.android.videooperation.interfaces.IShortVideo;
-import com.iknow.android.videooperation.utils.FileUtils;
 
 import java.io.File;
+
+import iknow.android.video.interfaces.IShortVideo;
+import iknow.android.video.utils.FileUtils;
+import iknow.android.video.view.VideoRecordDialog;
 
 public class VideoOperationActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
   private static final String BUNDLE_LENGTH = "BUNDLE_VIDEO_LENGTH";
@@ -75,7 +77,7 @@ public class VideoOperationActivity extends AppCompatActivity implements View.On
       chooseVideo();
 
     }else if(view.getId() == binding.shortVideo.getId())
-      new ShortVideoDialog(VideoOperationActivity.this).build(new IShortVideo() {
+      new VideoRecordDialog(VideoOperationActivity.this).build(new IShortVideo() {
         @Override
         public void getVideoFile(File f) {
           if(f != null){

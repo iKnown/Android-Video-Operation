@@ -1,4 +1,4 @@
-<com.iknow.android.videooperation.trimmer.VideoTrimmer
+<iknow.android.video.view.VideoTrimmerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/timeLine"
     android:layout_width="match_parent"

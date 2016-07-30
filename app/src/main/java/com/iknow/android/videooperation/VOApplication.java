@@ -2,7 +2,7 @@ package com.iknow.android.videooperation;
 
 import android.app.Application;
 
-import com.iknow.android.videooperation.compressor.FileUtils;
+import iknow.android.video.compressor.FileUtils;
 
 /**
  * Author：J.Chou
