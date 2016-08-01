@@ -26,7 +26,6 @@ package iknow.android.video.widget;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import java.util.List;
 import java.util.Vector;
 
@@ -79,13 +78,13 @@ public class Thumb {
         return mBitmap;
     }
 
-    private void setBitmap(@NonNull Bitmap bitmap) {
+    private void setBitmap( Bitmap bitmap) {
         mBitmap = bitmap;
         mWidthBitmap = bitmap.getWidth();
         mHeightBitmap = bitmap.getHeight();
     }
 
-    @NonNull
+
     public static List<Thumb> initThumbs(Resources resources) {
 
         List<Thumb> thumbs = new Vector<>();
@@ -107,11 +106,11 @@ public class Thumb {
         return thumbs;
     }
 
-    public static int getWidthBitmap(@NonNull List<Thumb> thumbs) {
+    public static int getWidthBitmap(List<Thumb> thumbs) {
         return thumbs.get(0).getWidthBitmap();
     }
 
-    public static int getHeightBitmap(@NonNull List<Thumb> thumbs) {
+    public static int getHeightBitmap(List<Thumb> thumbs) {
         return thumbs.get(0).getHeightBitmap();
     }
 

@@ -28,7 +28,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.View;
@@ -43,11 +42,11 @@ public class TimeLineView extends View {
     private int mHeightView;
     private SparseArray<Bitmap> mBitmapList = null;
 
-    public TimeLineView(@NonNull Context context, AttributeSet attrs) {
+    public TimeLineView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TimeLineView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
+    public TimeLineView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -130,7 +129,7 @@ public class TimeLineView extends View {
     }
 
     @Override
-    protected void onDraw(@NonNull Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         if (mBitmapList != null) {
@@ -148,7 +147,7 @@ public class TimeLineView extends View {
         }
     }
 
-    public void setVideo(@NonNull Uri data) {
+    public void setVideo(Uri data) {
         mVideoUri = data;
     }
 }

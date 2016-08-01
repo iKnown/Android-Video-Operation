@@ -30,7 +30,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -92,11 +91,11 @@ public class VideoTrimmerView extends FrameLayout {
     private boolean mResetSeekBar = true;
     private final MessageHandler mMessageHandler = new MessageHandler(this);
 
-    public VideoTrimmerView(@NonNull Context context, AttributeSet attrs) {
+    public VideoTrimmerView( Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public VideoTrimmerView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
+    public VideoTrimmerView( Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -159,7 +158,7 @@ public class VideoTrimmerView extends FrameLayout {
 
         mVideoView.setOnTouchListener(new OnTouchListener() {
             @Override
-            public boolean onTouch(View v, @NonNull MotionEvent event) {
+            public boolean onTouch(View v,  MotionEvent event) {
                 gestureDetector.onTouchEvent(event);
                 return true;
             }
@@ -328,7 +327,7 @@ public class VideoTrimmerView extends FrameLayout {
         notifyProgressUpdate(false);
     }
 
-    private void onPlayerIndicatorSeekStop(@NonNull SeekBar seekBar) {
+    private void onPlayerIndicatorSeekStop( SeekBar seekBar) {
         mMessageHandler.removeMessages(SHOW_PROGRESS);
         mVideoView.pause();
         mPlayView.setVisibility(View.VISIBLE);
@@ -339,7 +338,7 @@ public class VideoTrimmerView extends FrameLayout {
         notifyProgressUpdate(false);
     }
 
-    private void onVideoPrepared(@NonNull MediaPlayer mp) {
+    private void onVideoPrepared( MediaPlayer mp) {
         // Adjust the size of the video
         // so it fits on the screen
         int videoWidth = mp.getVideoWidth();
@@ -537,7 +536,7 @@ public class VideoTrimmerView extends FrameLayout {
 
     private static class MessageHandler extends Handler {
 
-        @NonNull
+
         private final WeakReference<VideoTrimmerView> mView;
 
         MessageHandler(VideoTrimmerView view) {

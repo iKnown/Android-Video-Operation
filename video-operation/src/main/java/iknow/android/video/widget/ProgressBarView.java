@@ -27,8 +27,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -48,18 +46,18 @@ public class ProgressBarView extends View implements OnRangeSeekBarListener, OnP
     private Rect mBackgroundRect;
     private Rect mProgressRect;
 
-    public ProgressBarView(@NonNull Context context, AttributeSet attrs) {
+    public ProgressBarView( Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ProgressBarView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressBarView( Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     private void init() {
-        int lineProgress = ContextCompat.getColor(getContext(), R.color.progress_color);
-        int lineBackground = ContextCompat.getColor(getContext(), R.color.background_progress_color);
+        int lineProgress = getContext().getResources().getColor(R.color.progress_color);
+        int lineBackground = getContext().getResources().getColor(R.color.background_progress_color);
 
         mProgressHeight = getContext().getResources().getDimensionPixelOffset(R.dimen.progress_video_line_height);
 
@@ -84,20 +82,20 @@ public class ProgressBarView extends View implements OnRangeSeekBarListener, OnP
     }
 
     @Override
-    protected void onDraw(@NonNull Canvas canvas) {
+    protected void onDraw( Canvas canvas) {
         super.onDraw(canvas);
 
         drawLineBackground(canvas);
         drawLineProgress(canvas);
     }
 
-    private void drawLineBackground(@NonNull Canvas canvas) {
+    private void drawLineBackground( Canvas canvas) {
         if (mBackgroundRect != null) {
             canvas.drawRect(mBackgroundRect, mBackgroundColor);
         }
     }
 
-    private void drawLineProgress(@NonNull Canvas canvas) {
+    private void drawLineProgress( Canvas canvas) {
         if (mProgressRect != null) {
             canvas.drawRect(mProgressRect, mProgressColor);
         }

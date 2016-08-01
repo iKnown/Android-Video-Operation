@@ -28,8 +28,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,11 +59,11 @@ public class RangeSeekBarView extends View {
     private final Paint mShadow = new Paint();
     private final Paint mLine = new Paint();
 
-    public RangeSeekBarView(@NonNull Context context, AttributeSet attrs) {
+    public RangeSeekBarView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RangeSeekBarView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
+    public RangeSeekBarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -83,12 +81,12 @@ public class RangeSeekBarView extends View {
 
         mFirstRun = true;
 
-        int shadowColor = ContextCompat.getColor(getContext(), R.color.shadow_color);
+        int shadowColor = getContext().getResources().getColor(R.color.shadow_color);
         mShadow.setAntiAlias(true);
         mShadow.setColor(shadowColor);
         mShadow.setAlpha(177);
 
-        int lineColor = ContextCompat.getColor(getContext(), R.color.line_color);
+        int lineColor = getContext().getResources().getColor(R.color.line_color);
         mLine.setAntiAlias(true);
         mLine.setColor(lineColor);
         mLine.setAlpha(200);
@@ -129,7 +127,7 @@ public class RangeSeekBarView extends View {
     }
 
     @Override
-    protected void onDraw(@NonNull Canvas canvas) {
+    protected void onDraw( Canvas canvas) {
         super.onDraw(canvas);
 
         drawShadow(canvas);
@@ -139,7 +137,7 @@ public class RangeSeekBarView extends View {
     private int currentThumb = 0;
 
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent ev) {
+    public boolean onTouchEvent( MotionEvent ev) {
         final Thumb mThumb;
         final Thumb mThumb2;
         final float coordinate = ev.getX();
@@ -217,7 +215,7 @@ public class RangeSeekBarView extends View {
         return false;
     }
 
-    private void checkPositionThumb(@NonNull Thumb mThumbLeft, @NonNull Thumb mThumbRight, float dx, boolean isLeftMove) {
+    private void checkPositionThumb( Thumb mThumbLeft,  Thumb mThumbRight, float dx, boolean isLeftMove) {
         if (isLeftMove && dx < 0) {
             if ((mThumbRight.getPos() - (mThumbLeft.getPos() + dx)) > mMaxWidth) {
                 mThumbRight.setPos(mThumbLeft.getPos() + dx + mMaxWidth);
@@ -311,7 +309,7 @@ public class RangeSeekBarView extends View {
         return closest;
     }
 
-    private void drawShadow(@NonNull Canvas canvas) {
+    private void drawShadow( Canvas canvas) {
         if (!mThumbs.isEmpty()) {
 
             for (Thumb th : mThumbs) {
@@ -332,7 +330,7 @@ public class RangeSeekBarView extends View {
         }
     }
 
-    private void drawThumbs(@NonNull Canvas canvas) {
+    private void drawThumbs( Canvas canvas) {
 
         if (!mThumbs.isEmpty()) {
             Paint p = new Paint();
